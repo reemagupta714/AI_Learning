@@ -1,14 +1,17 @@
-print("Script started")
 import boto3
 
-# Create S3 client
-s3 = boto3.client('s3')
+print("=== S3 Upload Tool ===")
 
-# File details
-file_name = 'day2_career_agent.py'
-bucket_name = 'agentic-ai-reema-001'
+# Take input from user
+file_name = input("Enter file name to upload: ")
+bucket_name = input("Enter bucket name: ")
 
-# Upload file
-s3.upload_file(file_name, bucket_name, file_name)
+try:
+    s3 = boto3.client('s3')
 
-print("File uploaded successfully to S3")
+    s3.upload_file(file_name, bucket_name, file_name)
+
+    print("File uploaded successfully to S3")
+
+except Exception as e:
+    print("Error occurred:", e)
